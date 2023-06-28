@@ -1,0 +1,190 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+body {
+  margin: 0;
+  background-color: #f5f5f5;
+  font-family: 'Jost', sans-serif;
+  /* font-family: 'Poppins', sans-serif; */
+  /* -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; */
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+.ant-modal-content {
+  padding: 0px !important;
+}
+
+.react-multiple-carousel__arrow {
+  z-index: 100 !important;
+}
+
+.alert {
+  font-size: 12px;
+  color: crimson;
+}
+
+.input-field {
+  background-color: unset !important;
+
+  border-radius: 0px;
+  padding-left: 0;
+  border: none;
+  border-bottom: 1px solid #cbd5e0;
+  color: black;
+  outline: none;
+  font-size: 13px;
+  border-color: #b3b3b3;
+  width: 100%;
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+.input-field > input {
+  background-color: unset !important;
+}
+.input-field > input::placeholder {
+  font-size: 13px;
+}
+
+.ant-picker-clear {
+  display: none;
+}
+:where(.css-dev-only-do-not-override-vdi5ld).ant-form-item .ant-form-item-label > label {
+  width: 100px !important;
+}
+
+:where(.css-dev-only-do-not-override-vdi5ld).ant-form-horizontal .ant-form-item-label {
+  align-self: center;
+}
+:where(.css-dev-only-do-not-override-vdi5ld).ant-input-affix-wrapper:focus,
+:where(.css-dev-only-do-not-override-vdi5ld).ant-input-affix-wrapper-focused,
+:where(.css-dev-only-do-not-override-vdi5ld).ant-input:focus,
+:where(.css-dev-only-do-not-override-vdi5ld).ant-input-focused {
+  box-shadow: none !important;
+}
+
+textarea:where(.css-dev-only-do-not-override-vdi5ld).ant-input {
+  min-height: 100px !important;
+}
+:where(.css-dev-only-do-not-override-vdi5ld).ant-tree .ant-tree-list-holder-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+:where(.css-dev-only-do-not-override-vdi5ld).ant-input {
+  /* width: 280px !important; */
+  padding: 8px 10px !important;
+}
+
+:where(.css-dev-only-do-not-override-vdi5ld).ant-input-search .ant-input-search-button {
+  height: 40px !important;
+}
+
+.active {
+  color: #7f4227;
+  font-weight: 500;
+}
+
+.ant-btn-primary {
+  background-color: #7f4227 !important;
+  box-shadow: unset;
+}
+
+.ant-modal-footer {
+  padding: 20px 20px 15px 20px;
+}
+
+.ant-result-title {
+  font-weight: 500;
+}
+
+.ant-result-subtitle {
+  color: #4f4f4f !important;
+}
+
+.ant-modal-title {
+  padding: 15px 20px 20px 20px;
+  font-size: 20px !important;
+  font-weight: normal !important;
+}
+
+.clamp-text {
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* Số dòng tối đa */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.rsis-container > div {
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+:where(.css-dev-only-do-not-override-vdi5ld).ant-menu-light .ant-menu-item-selected,
+:where(.css-dev-only-do-not-override-vdi5ld).ant-menu-light > .ant-menu .ant-menu-item-selected {
+  background: #dfdfdf;
+  font-weight: 600;
+}
+
+.ant-card {
+  height: 100%;
+}
+
+:where(.css-dev-only-do-not-override-vdi5ld).ant-card .ant-card-body {
+  padding: 20px;
+}
+
+.ant-select-selector {
+  height: 40px !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+.ant-table-row {
+  cursor: pointer;
+}
+
+.ant-popover-inner {
+  padding: 20px !important;
+}
+
+.ant-popconfirm-message-title {
+  margin-bottom: 10px !important;
+  font-weight: 600;
+}
+
+:where(.css-dev-only-do-not-override-vdi5ld).ant-btn.ant-btn-sm {
+  height: 28px !important;
+}
+
+:where(.css-dev-only-do-not-override-vdi5ld).ant-input-affix-wrapper {
+  padding: 0;
+}
+:where(.css-dev-only-do-not-override-vdi5ld).ant-btn.ant-btn-icon-only {
+  width: 40px !important;
+}
+
+.ant-input-suffix {
+  padding: 0 10px;
+}
+.ant-input-group-addon svg {
+  vertical-align: baseline !important;
+}
+
+.ant-pagination-options {
+  display: none !important;
+}
+
+.ant-drawer-content-wrapper {
+  width: 500px !important;
+}
