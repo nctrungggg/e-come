@@ -14,6 +14,8 @@ export const UserManagementContainer = () => {
   const [filteredData, setFilteredData] = useState<UserType[]>()
   const navigate = useNavigate()
 
+  console.log('userData:', userData)
+
   const handleSearchNameInput = (value: string) => {
     if (value === 'all') {
       setFilteredData(userData)

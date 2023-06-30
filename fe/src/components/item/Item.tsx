@@ -9,6 +9,8 @@ const ProductItem = ({ coverImage, name, price, id, salePrice, className }: Prod
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
+  console.log(id)
+
   return (
     <div
       onClick={() => {

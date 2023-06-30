@@ -41,7 +41,7 @@ const ProductPageContainer = () => {
     minPrice: 0,
     maxPrice: 0,
   })
-  const [sortOrder, setSortOrder] = useState<string>()
+  const [sortOrder, setSortOrder] = useState<any>()
   const [isOnSale, setIsOnSale] = useState(false)
 
   const [currentPage, setCurrentPage] = useState(1)
@@ -160,51 +160,36 @@ const ProductPageContainer = () => {
     })
   }
 
-  const filterProducts = (price: TPriceFiler) => {
-    const filteredProducts = productData.filter((product) => {
-      if (product.price > product.salePrice) {
-        if (product.salePrice < price.minPrice! || product.salePrice > price.maxPrice!) {
-          return false
-        }
-      } else if (product.price < price.minPrice! || product.price > price.maxPrice!) {
-        return false
-      }
+  const handleFilterProducts = (price: TPriceFiler, isOnSale: boolean, sortOrder: string) => {
+    let filteredProducts = [...productData]
 
-      return true
-    })
-
-    setFilterData(filteredProducts)
-  }
-
-  const handleChangeSortPrice = (event: any) => {
-    const value = event.target.value
-    setSortOrder(value)
-
-    const attemptValue = [...filterData]
-
-    if (value === 'DESC') {
-      attemptValue.sort((a, b) => b.salePrice - a.salePrice)
-    }
-    if (value === 'ASC') {
-      attemptValue.sort((a, b) => a.salePrice - b.salePrice)
+    if (price.maxPrice) {
+      filteredProducts = filteredProducts.filter(
+        (product) =>
+          (isOnSale &&
+            product.salePrice < product.price &&
+            product.salePrice >= price.minPrice &&
+            product.salePrice <= price.maxPrice) ||
+          (!isOnSale && product.price >= price.minPrice && product.price <= price.maxPrice)
+      )
+    } else if (isOnSale) {
+      filteredProducts = filteredProducts.filter((product) => product.salePrice < product.price)
     }
 
-    setFilterData(attemptValue)
-  }
-
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const filterSaleProducts = () => {
-    if (isOnSale) {
-      const filteredProducts = filterData.filter((product) => product.salePrice < product.price)
-      setFilterData(filteredProducts)
-    } else {
-      setFilterData(productData)
+    let sortedProducts = [...filteredProducts]
+    if (sortOrder === 'DESC') {
+      sortedProducts.sort((a, b) => b.salePrice - a.salePrice)
+    } else if (sortOrder === 'ASC') {
+      sortedProducts.sort((a, b) => a.salePrice - b.salePrice)
     }
+
+    setFilterData(sortedProducts)
   }
 
+  // Call handleFilterProducts when necessary
   useEffect(() => {
-    filterSaleProducts()
-  }, [isOnSale])
+    handleFilterProducts(priceFilter, isOnSale, sortOrder)
+  }, [isOnSale, sortOrder])
 
   const handleClearFitlerPrice = () => {
     setSortOrder('')
@@ -213,6 +198,7 @@ const ProductPageContainer = () => {
       maxPrice: 0,
     })
     setIsOnSale(false)
+
     setFilterData(productData) // Reset filterData về giá trị ban đầu
   }
 
@@ -244,14 +230,18 @@ const ProductPageContainer = () => {
               onExpand={handleExpand}
             />
           </div>
-          <div className="mt-5 ">
+
+          <div className="mt-5">
             <div className="text-[24px]">Price: </div>
             <Checkbox checked={isOnSale} onChange={(e) => setIsOnSale(e.target.checked)} className="text-base mt-2">
               Sale
             </Checkbox>
-
             <div>
-              <Radio.Group value={sortOrder} onChange={handleChangeSortPrice} className="my-2 flex flex-col gap-2">
+              <Radio.Group
+                value={sortOrder}
+                onChange={(e) => setSortOrder(e.target.value)}
+                className="my-2 flex flex-col gap-2"
+              >
                 <Radio value="ASC" className="text-base">
                   Low to High
                 </Radio>
@@ -265,7 +255,6 @@ const ProductPageContainer = () => {
                 <input
                   type="number"
                   className="!w-[80px] input-field"
-                  // defaultValue={priceFilter.minPrice}
                   value={priceFilter.minPrice}
                   min={0}
                   onChange={(event) => handleOnChangeMinPrice(event)}
@@ -275,30 +264,26 @@ const ProductPageContainer = () => {
                 <input
                   type="number"
                   className="!w-[80px] input-field"
-                  // defaultValue={priceFilter.maxPrice}
                   min={0}
                   value={priceFilter.maxPrice}
                   onChange={(event) => handleOnChangeMaxPrice(event)}
                   onKeyPress={preventMinus}
                 />
               </div>
-              {/* <div className="absolute top-0 right-[90px] cursor-pointer">
-                <CloseOutlined className="text-sm" />
-              </div> */}
             </div>
             <div className="flex gap-2">
               <button
-                className="w-[80px] h-[35px] border border-[#909090]  mt-5 rounded-md text-[#000000de] transition-all duration-300 hover:bg-[#9d9d9d] hover:border-none hover:!text-[#FFFFFF]"
+                className="w-[80px] h-[35px] border border-[#909090] mt-5 rounded-md text-[#000000de] transition-all duration-300 hover:bg-[#9d9d9d] hover:border-none hover:!text-[#FFFFFF]"
                 onClick={handleClearFitlerPrice}
               >
-                <p className="text-sm ">RESET</p>
+                <p className="text-sm">RESET</p>
               </button>
               <button
                 disabled={priceFilter.maxPrice === 0 ? true : false}
                 className={`${
                   priceFilter.maxPrice === 0 ? 'cursor-not-allowed' : ''
                 } w-[80px] h-[35px] mt-5 rounded-md bg-baseColor hover:bg-[#a35d3e] text-[#FFFFFF] transition-all duration-300`}
-                onClick={() => filterProducts(priceFilter)}
+                onClick={() => handleFilterProducts(priceFilter, isOnSale, sortOrder)}
               >
                 <p className="text-sm">REFINE</p>
               </button>

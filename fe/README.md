@@ -1,50 +1,109 @@
-# Project Website:
+1. check lại filter ở product
+2. xoá user ở bên admin thì bên user như nào
 
-https://clothes-store-jade.vercel.app/
+// <div className="mt-5 ">
+// <div className="text-[24px]">Price: </div>
+// <Checkbox checked={isOnSale} onChange={(e) => setIsOnSale(e.target.checked)} className="text-base mt-2">
+// Sale
+// </Checkbox>
 
-# Getting Started with Create React App
+// <div>
+// <Radio.Group value={sortOrder} onChange={handleChangeSortPrice} className="my-2 flex flex-col gap-2">
+// <Radio value="ASC" className="text-base">
+// Low to High
+// </Radio>
+// <Radio className="text-base" value="DESC">
+// High to Low
+// </Radio>
+// </Radio.Group>
+// </div>
+// <div className="relative pt-4">
+// <div className="flex py-2">
+// <input
+// type="number"
+// className="!w-[80px] input-field"
+// // defaultValue={priceFilter.minPrice}
+// value={priceFilter.minPrice}
+// min={0}
+// onChange={(event) => handleOnChangeMinPrice(event)}
+// onKeyPress={preventMinus}
+// />
+// <div className="px-3">to</div>
+// <input
+// type="number"
+// className="!w-[80px] input-field"
+// // defaultValue={priceFilter.maxPrice}
+// min={0}
+// value={priceFilter.maxPrice}
+// onChange={(event) => handleOnChangeMaxPrice(event)}
+// onKeyPress={preventMinus}
+// />
+// </div>
+// {/_ <div className="absolute top-0 right-[90px] cursor-pointer">
+// <CloseOutlined className="text-sm" />
+// </div> _/}
+// </div>
+// <div className="flex gap-2">
+// <button
+// className="w-[80px] h-[35px] border border-[#909090] mt-5 rounded-md text-[#000000de] transition-all duration-300 hover:bg-[#9d9d9d] hover:border-none hover:!text-[#FFFFFF]"
+// onClick={handleClearFitlerPrice}
+// >
+// <p className="text-sm ">RESET</p>
+// </button>
+// <button
+// disabled={priceFilter.maxPrice === 0 ? true : false}
+// className={`${
+//                   priceFilter.maxPrice === 0 ? 'cursor-not-allowed' : ''
+//                 } w-[80px] h-[35px] mt-5 rounded-md bg-baseColor hover:bg-[#a35d3e] text-[#FFFFFF] transition-all duration-300`}
+// onClick={() => filterProducts(priceFilter)}
+// >
+// <p className="text-sm">REFINE</p>
+// </button>
+// </div>
+// </div>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+// const filterProducts = (price: TPriceFiler) => {
+// const filteredProducts = productData.filter((product) => {
+// if (product.price > product.salePrice) {
+// if (product.salePrice < price.minPrice! || product.salePrice > price.maxPrice!) {
+// return false
+// }
+// } else if (product.price < price.minPrice! || product.price > price.maxPrice!) {
+// return false
+// }
 
-## Available Scripts
+// return true
+// })
 
-In the project directory, you can run:
+// setFilterData(filteredProducts)
+// }
 
-### `npm start`
+// const handleChangeSortPrice = (event: any) => {
+// const value = event.target.value
+// setSortOrder(value)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+// const attemptValue = [...filterData]
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+// if (value === 'DESC') {
+// attemptValue.sort((a, b) => b.salePrice - a.salePrice)
+// }
+// if (value === 'ASC') {
+// attemptValue.sort((a, b) => a.salePrice - b.salePrice)
+// }
 
-### `npm test`
+// setFilterData(attemptValue)
+// }
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+// // eslint-disable-next-line react-hooks/exhaustive-deps
+// const filterSaleProducts = () => {
+// if (isOnSale) {
+// const filteredProducts = filterData.filter((product) => product.salePrice < product.price)
+// setFilterData(filteredProducts)
+// } else {
+// setFilterData(productData)
+// }
+// }
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+// useEffect(() => {
+// filterSaleProducts()
+// }, [isOnSale])

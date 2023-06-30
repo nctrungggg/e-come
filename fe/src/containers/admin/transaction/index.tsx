@@ -184,7 +184,7 @@ export const TransactionAdminContainer = () => {
             }
           } catch (error) {
             console.log('error', error)
-            toast.error('Something went wrong')
+            toast.error('Cannot update canceled transaction')
           }
         }
 

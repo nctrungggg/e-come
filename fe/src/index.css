@@ -62,7 +62,7 @@ code {
 }
 
 :where(.css-dev-only-do-not-override-vdi5ld).ant-form-horizontal .ant-form-item-label {
-  align-self: center;
+  align-self: flex-start;
 }
 :where(.css-dev-only-do-not-override-vdi5ld).ant-input-affix-wrapper:focus,
 :where(.css-dev-only-do-not-override-vdi5ld).ant-input-affix-wrapper-focused,

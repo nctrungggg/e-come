@@ -59,7 +59,7 @@ export const ProductDetailContainer = ({ productId }: ProductItemProps) => {
         .then((res) => {
           setProductData(res.data)
           setSizeData(
-            res.data.sizes.map((size: any) => ({ quantity: size.Product_Size.quantity, id: size.Product_Size.sizeId }))
+            res.data?.sizes.map((size: any) => ({ quantity: size.Product_Size.quantity, id: size.Product_Size.sizeId }))
           )
         })
         .catch((err) => console.log(err))
@@ -116,6 +116,10 @@ export const ProductDetailContainer = ({ productId }: ProductItemProps) => {
       navigate(-1)
     }
   }, [navigate, productData?.deletedAt, productId])
+
+  if (!productData) {
+    navigate('/404')
+  }
 
   return (
     <div className=" px-[8%] mt-[4vh] py-[2vh]">

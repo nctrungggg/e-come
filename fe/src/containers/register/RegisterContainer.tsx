@@ -165,7 +165,7 @@ export const RegisterContainer = () => {
               <Form.Item
                 className="font-medium"
                 label="Gender"
-                help={<div>{!!errors && <div className="alert mt-1">{errors.gender?.message?.toString()}</div>}</div>}
+                help={<div>{!!errors && <div className="alert my-1">{errors.gender?.message?.toString()}</div>}</div>}
               >
                 <Controller
                   control={control}
